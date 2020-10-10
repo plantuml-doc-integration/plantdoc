@@ -10,8 +10,10 @@
     "@types/node": "^12.12.63",
     "@types/react": "^16.9.51",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "typescript": "^3.7.5"
   },
@@ -36,12 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:5000",
-      "pathRewrite": {
-        "^/api": "/"
-      }
-    }
-  }
+  "proxy": "http://localhost:5000"
 }
