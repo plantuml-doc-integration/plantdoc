@@ -21,7 +21,7 @@ type State = {
 	hasCode: boolean;
 }
 
-export default class AuthPage extends React.Component<Props, State> {
+class AuthPage extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -158,3 +158,20 @@ export default class AuthPage extends React.Component<Props, State> {
 		);
 	}
 }
+
+import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
+import { State as RedirectDocIdStoreState, getRedirectDocId } from "store/slices/RedirectDocIdSlice";
+import { connect } from "react-redux";
+
+type ReduxStoreState = TokenStoreState & RedirectDocIdStoreState;
+
+const connectToRedux = connect((state: ReduxStoreState) => ({
+	//Mapping state to props
+	authorized: getToken(state) !== null,
+	redirectDocId: getRedirectDocId(state)
+}), {
+	//Mapping action creators to prop functions
+	setToken,
+});
+
+export default connectToRedux(AuthPage);

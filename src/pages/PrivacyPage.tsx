@@ -1,5 +1,5 @@
 import React from "react";
-import HtmlPage from "components/HtmlPage";
+import HtmlPage from "components/html/HtmlPage";
 import { EmptyObject } from "types";
 
 const PrivacyPage: React.FunctionComponent<EmptyObject> = () => {

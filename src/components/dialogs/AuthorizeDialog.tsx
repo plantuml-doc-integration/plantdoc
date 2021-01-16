@@ -19,7 +19,7 @@ type State = {
 	fail: boolean;
 }
 
-export default class AuthorizeDialog extends React.Component<Props, State> {
+class AuthorizeDialog extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -106,4 +106,22 @@ export default class AuthorizeDialog extends React.Component<Props, State> {
 		);
 	}
 }
+
+import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
+import { setRedirectDocId } from "store/slices/RedirectDocIdSlice";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+type ReduxStoreState = TokenStoreState;
+
+const connectToRedux = connect((state: ReduxStoreState) => ({
+	//Mapping state to props
+	authorized: getToken(state) !== null
+}), {
+	//Mapping action creators to prop functions
+	setToken,
+	setRedirectDocId
+});
+
+export default withRouter(connectToRedux(AuthorizeDialog));
 
