@@ -1,9 +1,9 @@
 import React from "react";
 import "./Html.css";
-import HeaderBar from "components/headerBar/HeaderBar";
+import HeaderBar from "components/HeaderBar";
 import { Card, CardContent } from "@material-ui/core";
 
-interface Props {
+type Props = {
 	title: string;
 }
 const HtmlPage: React.FunctionComponent<Props> = ({ children, title }) => {

@@ -1,53 +1,44 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router-dom";
 import { CircularProgress, Tooltip, IconButton } from "@material-ui/core";
 import { ErrorOutlineOutlined, RefreshOutlined } from "@material-ui/icons";
 import { If, Then, Else, When } from "react-if";
 import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
-import HeaderBar from "components/headerBar/HeaderBar";
+import HeaderBar from "components/HeaderBar";
 import PlantExpansionPanel from "components/PlantExpansionPanel";
 import { Document } from "types";
 import parseDiagramData from "functions/diagram";
-import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
 
-import { connect, ConnectedProps } from "react-redux";
+type Props = RouteComponentProps<{ docId: string }> & {
+	authorized: boolean,
+	token: string | null,
+	setToken: (token: string | null) => void
+}
 
-interface State {
+type State = {
 	loading: boolean,
 	error: boolean,
 	document?: Document
 }
 
-const connector = connect(function (state: TokenStoreState) {
-	const token = getToken(state);
-	return {
-		authorized: token !== null,
-		token: token
-	};
-}, {
-	setToken
-});
-
-type Props = ConnectedProps<typeof connector> & RouteComponentProps<Record<string, string | undefined>>;
-
-export default connector(class DocPage extends React.Component<Props, State> {
+export default class DocsPage extends React.Component<Props, State> {
 
 	state: State = {
 		loading: false,
 		error: false,
 		document: undefined
 	}
-	componentDidMount() {
+	componentDidMount(): void {
 		this.updateDocument();
 	}
-	componentDidUpdate(prevProps: Props) {
+	componentDidUpdate(prevProps: Props): void {
 		if (this.props.match.params.docId !== prevProps.match.params.docId) {
 			this.updateDocument();
 		}
 
 	}
-	updateDocument() {
+	updateDocument(): void {
 		const docId = this.props.match.params.docId;
 		if (!docId) {
 			this.props.history.push("/");
@@ -63,7 +54,7 @@ export default connector(class DocPage extends React.Component<Props, State> {
 			this.loadDocument();
 		}
 	}
-	loadDocument = async () => {
+	loadDocument = async (): Promise<void> => {
 
 		try {
 			const response = await axios.get(`/docs/${this.props.match.params.docId}`, { headers: { authorization: `bearer ${this.props.token}` } });
@@ -89,7 +80,7 @@ export default connector(class DocPage extends React.Component<Props, State> {
 	};
 
 
-	render() {
+	render(): ReactNode {
 		return (
 			<div>
 				<HeaderBar title={this.state.loading ? "Loading Title..." : this.state.error ? "Error" : this.state.document ? this.state.document.title : "Unknown Document"} >
@@ -133,4 +124,4 @@ export default connector(class DocPage extends React.Component<Props, State> {
 			</div>
 		);
 	}
-});
+}

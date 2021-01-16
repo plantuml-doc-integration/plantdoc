@@ -2,7 +2,9 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-const Footer: React.FunctionComponent<Record<string, never>> = () => {
+import { EmptyObject } from "types";
+
+const Footer: React.FunctionComponent<EmptyObject> = () => {
 	return (
 		<footer>
 			<Typography variant="caption" className="text-light">

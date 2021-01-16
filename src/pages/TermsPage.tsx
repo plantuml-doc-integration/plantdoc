@@ -1,7 +1,8 @@
 import React from "react";
-import HtmlPage from "components/html/HtmlPage";
+import HtmlPage from "components/HtmlPage";
+import { EmptyObject } from "types";
 
-const TermsPage: React.FunctionComponent<Record<string, never>> = () => {
+const TermsPage: React.FunctionComponent<EmptyObject> = () => {
 	return (<HtmlPage title="Terms and Conditions">
 		<h1>Terms and Conditions</h1>
 

@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
-import DialogBase from "../DialogBase";
+import DialogBase from "./DialogBase";
 import { Button, DialogActions } from "@material-ui/core";
 import InputDialogContent from "components/dialogs/InputDialogContent";
 
-interface Props {
+type Props = {
 	onClose: (document: string | undefined) => void;
 	open: boolean;
 }
 
-interface State {
+type State = {
 	input: string;
 	error: string;
 }

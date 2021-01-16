@@ -4,7 +4,7 @@
 import { Diagram } from "types";
 import { pngUrl, svgUrl } from "functions/plantuml/url";
 
-interface DiagramParserConfig {
+type DiagramParserConfig = {
 	addTitle?: boolean
 	format?: "svg" | "png"
 }

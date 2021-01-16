@@ -1,7 +1,7 @@
 /*
  * Taken from https://plantuml.com/code-javascript-synchronous and typescripted it
  */
-const encode64: (data: Uint8Array) => string = (data) => {
+const encode64 = (data: Uint8Array): string => {
 	let r = "";
 	for (let i = 0; i < data.length; i += 3) {
 		r += append3bytes(data[i], data[i + 1], data[i + 2]);
@@ -9,7 +9,7 @@ const encode64: (data: Uint8Array) => string = (data) => {
 	return r;
 };
 
-const append3bytes: (b1: number, b2: number | undefined, b3: number | undefined) => string = (b1, b2, b3) => {
+const append3bytes = (b1: number, b2: number | undefined, b3: number | undefined): string => {
 	if (b2 === undefined) {
 		b2 = 0;
 	}
@@ -28,7 +28,7 @@ const append3bytes: (b1: number, b2: number | undefined, b3: number | undefined)
 	return r;
 };
 
-const encode6bit: (b: number) => string = (b) => {
+const encode6bit = (b: number): string => {
 	if (b < 10) {
 		return String.fromCharCode(48 + b);
 	}

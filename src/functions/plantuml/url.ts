@@ -8,7 +8,5 @@ const compressAndEncode = (diagramText: string) => {
 	const encoded = plant64(compressed);
 	return encoded;
 };
-export const svgUrl: (diagramText: string) => string =
-	diagramText => `https://www.plantuml.com/plantuml/svg/${compressAndEncode(diagramText)}`;
-export const pngUrl: (diagramText: string) => string =
-	diagramText => `https://www.plantuml.com/plantuml/img/${compressAndEncode(diagramText)}`;
+export const svgUrl = (diagramText: string): string => `https://www.plantuml.com/plantuml/svg/${compressAndEncode(diagramText)}`;
+export const pngUrl = (diagramText: string): string => `https://www.plantuml.com/plantuml/img/${compressAndEncode(diagramText)}`;

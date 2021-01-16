@@ -1,7 +1,8 @@
 import React from "react";
-import HtmlPage from "components/html/HtmlPage";
+import HtmlPage from "components/HtmlPage";
+import { EmptyObject } from "types";
 
-const PrivacyPage: React.FunctionComponent<Record<string, never>> = () => {
+const PrivacyPage: React.FunctionComponent<EmptyObject> = () => {
 	return (<HtmlPage title="Privacy Policy">
 		<h1>Privacy Policy of PlantUML Doc Integration</h1>
 

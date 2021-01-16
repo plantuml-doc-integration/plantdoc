@@ -1,26 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 
-import { Switch, Route, withRouter, useLocation, RouteComponentProps } from "react-router-dom";
-
+import { Switch, Route, withRouter } from "react-router-dom";
+import ScrollToTop from "components/ScrollToTop";
 import DocsPage from "pages/DocsPage";
 import HomePage from "pages/HomePage";
 import PrivacyPage from "pages/PrivacyPage";
 import TermsPage from "pages/TermsPage";
 import AuthPage from "pages/AuthPage";
-import Footer from "components/footer/Footer";
+import Footer from "components/Footer";
+import { RouterPropsWithAnyParam } from "types";
 
-const ScrollToTop = () => {
-	const { pathname } = useLocation();
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, [pathname]);
-
-	return null;
-};
-
-class App extends React.Component<RouteComponentProps<Record<string, string | undefined>>> {
+class App extends React.Component<RouterPropsWithAnyParam> {
 
 	render() {
 

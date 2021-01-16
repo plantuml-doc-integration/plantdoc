@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { DialogContent, Typography, DialogContentText } from "@material-ui/core";
 
-interface Props {
+type Props = {
 	iconClass?: string | Array<string>;
 	icon: React.ReactNode;
 	caption: React.ReactNode;

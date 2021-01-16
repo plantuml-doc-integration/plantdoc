@@ -1,37 +1,27 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import axios from "axios";
-import { RouteComponentProps } from "react-router-dom";
 import { CircularProgress, Button, DialogActions } from "@material-ui/core";
 import { DoneOutlineOutlined, ErrorOutlineOutlined } from "@material-ui/icons";
 import { If, Then, Else, When } from "react-if";
 import LargeIconDialogContent from "components/dialogs/LargeIconDialogContent";
 import DialogBase from "components/dialogs/DialogBase";
-import HeaderBar from "components/headerBar/HeaderBar";
+import HeaderBar from "components/HeaderBar";
 import queryString from "query-string";
+import { RouterPropsWithAnyParam } from "types";
 
+type Props = RouterPropsWithAnyParam & {
+	authorized: boolean,
+	redirectDocId: string | null,
+	setToken: (token: string | null) => void
+}
 
-import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
-import { State as RedirectDocIdStoreState, getRedirectDocId } from "store/slices/RedirectDocIdSlice";
-import { connect, ConnectedProps } from "react-redux";
-
-const connector = connect(function (state: TokenStoreState & RedirectDocIdStoreState) {
-	return {
-		authorized: getToken(state) !== null,
-		redirectDocId: getRedirectDocId(state)
-	};
-}, {
-	setToken
-});
-
-type Props = ConnectedProps<typeof connector> & RouteComponentProps<Record<string, string | undefined>>;
-
-interface State {
+type State = {
 	loading: boolean;
 	success: boolean;
 	hasCode: boolean;
 }
 
-export default connector(class AuthPage extends React.Component<Props, State> {
+export default class AuthPage extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -41,8 +31,7 @@ export default connector(class AuthPage extends React.Component<Props, State> {
 		};
 	}
 
-
-	componentDidMount() {
+	componentDidMount(): void {
 		if (this.props.authorized) {
 			//Already authorized
 			this.props.history.push("/");
@@ -62,7 +51,7 @@ export default connector(class AuthPage extends React.Component<Props, State> {
 		}
 	}
 
-	verifyCode = async (code: string) => {
+	verifyCode = async (code: string): Promise<void> => {
 		let success = false;
 		try {
 			const response = await axios.get("/auth/token", { params: { code } });
@@ -78,7 +67,7 @@ export default connector(class AuthPage extends React.Component<Props, State> {
 		});
 	};
 
-	redirectToAuthUrl = async () => {
+	redirectToAuthUrl = async (): Promise<boolean> => {
 		let success = true;
 		try {
 			const response = await axios.get("/auth/new");
@@ -94,24 +83,24 @@ export default connector(class AuthPage extends React.Component<Props, State> {
 		return success;
 	}
 
-	retryAuthorize = () => {
+	retryAuthorize = (): void => {
 		this.setState({
 			loading: true,
 			success: false
 		}, this.redirectToAuthUrl);
 	}
 
-	redirectHome = () => {
+	redirectHome = (): void => {
 		this.props.history.push("/");
 	}
-	redirectDocs = () => {
+	redirectDocs = (): void => {
 		if (this.props.redirectDocId !== null) {
 			this.props.history.push(`/docs/${this.props.redirectDocId}`);
 		} else {
 			this.props.history.push("/");
 		}
 	}
-	render() {
+	render(): ReactNode {
 		return (
 			<div>
 				<HeaderBar title="Authorization" />
@@ -168,4 +157,4 @@ export default connector(class AuthPage extends React.Component<Props, State> {
 			</div>
 		);
 	}
-});
+}

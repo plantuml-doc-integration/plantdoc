@@ -1,7 +1,7 @@
 import React from "react";
 import { DialogContent, DialogContentText, TextField } from "@material-ui/core";
 
-interface Props {
+type Props = {
 	label: string;
 	value: string;
 	onChange: (value: string) => void;

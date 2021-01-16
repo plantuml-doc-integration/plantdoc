@@ -3,10 +3,10 @@ import useLocalStore from "store/localStore";
 const REDIRECT_DOC_ID_NAME = "plantuml-doc-integration-redirect-doc-id";
 const redirectDocIdStore = useLocalStore(REDIRECT_DOC_ID_NAME);
 
-export interface Slice {
+export type Slice = {
 	value: string | null;
 }
-export interface State {
+export type State = {
 	redirectDocId: Slice;
 }
 
@@ -38,8 +38,8 @@ export const { setRedirectDocId } = slice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const getRedirectDocId: (state: State) => string | null = state => state.redirectDocId.value;
-export const persistRedirectDocId: (reduxStore: { getState: () => State }) => (() => void) = reduxStore => {
+export const getRedirectDocId = (state: State): string | null => state.redirectDocId.value;
+export const persistRedirectDocId = (reduxStore: { getState: () => State }): (() => void) => {
 	return () => {
 		redirectDocIdStore.store(getRedirectDocId(reduxStore.getState()));
 	};

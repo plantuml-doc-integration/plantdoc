@@ -3,10 +3,10 @@ import useLocalStore from "store/localStore";
 const TOKEN_NAME = "plantuml-doc-integration-token-v1";
 const tokenStore = useLocalStore(TOKEN_NAME);
 
-export interface TokenSlice {
+export type TokenSlice = {
 	value: string | null;
 }
-export interface State {
+export type State = {
 	token: TokenSlice;
 }
 

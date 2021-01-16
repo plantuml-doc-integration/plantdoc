@@ -1,19 +1,20 @@
-import React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import React, { ReactNode } from "react";
+import { RouterPropsWithAnyParam } from "types";
 import { AppBar, Toolbar, IconButton, Typography, Tooltip } from "@material-ui/core";
 import { InsertDriveFileOutlined, SettingsOutlined, AccountCircleOutlined } from "@material-ui/icons";
 import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
-import OpenDocumentDialog from "components/dialogs/openDocumentDialog/OpenDocumentDialog";
+import OpenDocumentDialog from "components/dialogs/OpenDocumentDialog";
 
-interface Props extends RouteComponentProps<Record<string, string | undefined>> {
+type Props = RouterPropsWithAnyParam & {
 	title: string;
 }
-interface State {
+
+type State = {
 	openAuthorizeDialog: boolean;
 	openOpenDocumentDialog: boolean
 }
 
-export default withRouter(class HeaderBar extends React.Component<Props, State>{
+export default class HeaderBar extends React.Component<Props, State>{
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -29,7 +30,7 @@ export default withRouter(class HeaderBar extends React.Component<Props, State>{
 		}
 	}
 
-	render() {
+	render(): ReactNode {
 		return (
 			<header id="header">
 				<AppBar position="static">
@@ -67,5 +68,5 @@ export default withRouter(class HeaderBar extends React.Component<Props, State>{
 
 		);
 	}
-});
+}
 

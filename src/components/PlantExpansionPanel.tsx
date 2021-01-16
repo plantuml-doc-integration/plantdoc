@@ -5,9 +5,10 @@ import { If, Then, Else, When } from "react-if";
 import { Diagram } from "types";
 
 
-interface Props extends Diagram {
+type Props = Diagram & {
 	id: number
 }
+
 const PlantExpansionPanel: React.FunctionComponent<Props> = ({ valid, data, url, id }) => {
 	let title;
 	if (data === undefined || typeof (data.title) === "boolean" || data.title === undefined || data.title === "") {
