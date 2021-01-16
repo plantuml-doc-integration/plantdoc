@@ -5,6 +5,7 @@ import { InsertDriveFileOutlined, SettingsOutlined, AccountCircleOutlined } from
 import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
 import OpenDocumentDialog from "components/dialogs/OpenDocumentDialog";
 
+
 type Props = RouterPropsWithAnyParam & {
 	title: string;
 }
@@ -14,7 +15,7 @@ type State = {
 	openOpenDocumentDialog: boolean
 }
 
-export default class HeaderBar extends React.Component<Props, State>{
+class HeaderBar extends React.Component<Props, State>{
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -70,3 +71,6 @@ export default class HeaderBar extends React.Component<Props, State>{
 	}
 }
 
+import { withRouter } from "react-router-dom";
+
+export default withRouter(HeaderBar);
