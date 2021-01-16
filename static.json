@@ -6,7 +6,7 @@
   "https_only": true,
   "proxies": {
     "/api/": {
-      "origin": "${API_URL}"
+      "origin": "https://plantuml-doc-integration-api.herokuapp.com"
     }
   }
 }
