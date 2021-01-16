@@ -1,13 +1,15 @@
 import React, { ReactNode } from "react";
 import { RouterPropsWithAnyParam } from "types";
 import { AppBar, Toolbar, IconButton, Typography, Tooltip } from "@material-ui/core";
-import { InsertDriveFileOutlined, SettingsOutlined, AccountCircleOutlined } from "@material-ui/icons";
+import { When } from "react-if";
+import { InsertDriveFileOutlined, SettingsOutlined, AccountCircleOutlined, HomeOutlined } from "@material-ui/icons";
 import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
 import OpenDocumentDialog from "components/dialogs/OpenDocumentDialog";
 
 
 type Props = RouterPropsWithAnyParam & {
 	title: string;
+	isHome?: boolean;
 }
 
 type State = {
@@ -31,11 +33,22 @@ class HeaderBar extends React.Component<Props, State>{
 		}
 	}
 
+	openHomePage(): void {
+		this.props.history.push("/");
+	}
+
 	render(): ReactNode {
 		return (
 			<header id="header">
 				<AppBar position="static">
 					<Toolbar>
+						<When condition={!this.props.isHome}>
+							<Tooltip title="Home">
+								<IconButton edge="start" color="inherit" onClick={() => this.openHomePage()}>
+									<HomeOutlined className="header-icon" />
+								</IconButton>
+							</Tooltip>
+						</When>
 						<Tooltip title="Open Document">
 							<IconButton edge="start" color="inherit" onClick={() => this.setState({ openOpenDocumentDialog: true })}>
 								<InsertDriveFileOutlined className="header-icon" />

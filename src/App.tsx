@@ -29,8 +29,7 @@ class App extends React.Component<RouterPropsWithAnyParam> {
 						<ScrollToTop />
 						<TermsPage />
 					</Route>
-					<Route exact path="/"  >
-						<HomePage />
+					<Route exact path="/" component={HomePage}>
 					</Route>
 					<Route path="*">
 						Not Found page working in progress
