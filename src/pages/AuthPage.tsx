@@ -4,14 +4,14 @@ import { RouteComponentProps } from "react-router-dom";
 import { CircularProgress, Button, DialogActions } from "@material-ui/core";
 import { DoneOutlineOutlined, ErrorOutlineOutlined } from "@material-ui/icons";
 import { If, Then, Else, When } from "react-if";
-import LargeIconDialogContent from "../components/dialogs/LargeIconDialogContent";
-import DialogBase from "../components/dialogs/DialogBase";
-import HeaderBar from "../components/headerBar/HeaderBar";
+import LargeIconDialogContent from "components/dialogs/LargeIconDialogContent";
+import DialogBase from "components/dialogs/DialogBase";
+import HeaderBar from "components/headerBar/HeaderBar";
 import queryString from "query-string";
 
 
-import { State as TokenStoreState, getToken, setToken } from "../store/slices/TokenSlice";
-import { State as RedirectDocIdStoreState, getRedirectDocId } from "../store/slices/RedirectDocIdSlice";
+import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
+import { State as RedirectDocIdStoreState, getRedirectDocId } from "store/slices/RedirectDocIdSlice";
 import { connect, ConnectedProps } from "react-redux";
 
 const connector = connect(function (state: TokenStoreState & RedirectDocIdStoreState) {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Html.css";
-import HeaderBar from "../headerBar/HeaderBar";
+import HeaderBar from "components/headerBar/HeaderBar";
 import { Card, CardContent } from "@material-ui/core";
 
 interface Props {

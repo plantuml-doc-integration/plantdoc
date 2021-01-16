@@ -2,8 +2,8 @@ import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { AppBar, Toolbar, IconButton, Typography, Tooltip } from "@material-ui/core";
 import { InsertDriveFileOutlined, SettingsOutlined, AccountCircleOutlined } from "@material-ui/icons";
-import AuthorizeDialog from "../dialogs/authorizeDialog/AuthorizeDialog";
-import OpenDocumentDialog from "../dialogs/openDocumentDialog/OpenDocumentDialog";
+import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
+import OpenDocumentDialog from "components/dialogs/openDocumentDialog/OpenDocumentDialog";
 
 interface Props extends RouteComponentProps<Record<string, string | undefined>> {
 	title: string;

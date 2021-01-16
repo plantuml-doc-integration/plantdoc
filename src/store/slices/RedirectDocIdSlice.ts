@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import useLocalStore from "../localStore";
+import useLocalStore from "store/localStore";
 const REDIRECT_DOC_ID_NAME = "plantuml-doc-integration-redirect-doc-id";
 const redirectDocIdStore = useLocalStore(REDIRECT_DOC_ID_NAME);
 

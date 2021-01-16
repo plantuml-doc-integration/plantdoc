@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import DialogBase from "../DialogBase";
 import { Button, DialogActions } from "@material-ui/core";
-import InputDialogContent from "../InputDialogContent";
+import InputDialogContent from "components/dialogs/InputDialogContent";
 
 interface Props {
 	onClose: (document: string | undefined) => void;

@@ -1,10 +1,10 @@
-export interface Document {
+export type Document = {
 	title: string,
 	documentId: string,
 	diagrams: Diagram[]
 }
 
-export interface Diagram {
+export type Diagram = {
 	valid: boolean,
 	data?: Record<string, string | boolean>,
 	url?: string,

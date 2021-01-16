@@ -4,7 +4,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { CircularProgress, Tooltip, IconButton } from "@material-ui/core";
 import { ErrorOutlineOutlined, RefreshOutlined } from "@material-ui/icons";
 import { If, Then, Else, When } from "react-if";
-import AuthorizeDialog from "components/dialogs/authorizeDialog/AuthorizeDialog";
+import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
 import HeaderBar from "components/headerBar/HeaderBar";
 import PlantExpansionPanel from "components/PlantExpansionPanel";
 import { Document } from "types";

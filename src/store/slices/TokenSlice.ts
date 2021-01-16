@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import useLocalStore from "../localStore";
+import useLocalStore from "store/localStore";
 const TOKEN_NAME = "plantuml-doc-integration-token-v1";
 const tokenStore = useLocalStore(TOKEN_NAME);
 

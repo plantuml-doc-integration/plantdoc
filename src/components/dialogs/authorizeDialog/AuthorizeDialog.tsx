@@ -1,31 +1,25 @@
-import React from "react";
-import DialogBase from "../DialogBase";
+import React, { ReactNode } from "react";
+import DialogBase from "components/dialogs/DialogBase";
 import { Button, CircularProgress, DialogActions } from "@material-ui/core";
 import { VpnKeyOutlined, LockOutlined, ErrorOutlineOutlined } from "@material-ui/icons";
 import { If, Then, Else } from "react-if";
-import LargeIconDialogContent from "../LargeIconDialogContent";
-import { State as TokenStoreState, getToken, setToken } from "../../../store/slices/TokenSlice";
-import { setRedirectDocId } from "../../../store/slices/RedirectDocIdSlice";
-import { connect, ConnectedProps } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import LargeIconDialogContent from "components/dialogs/LargeIconDialogContent";
+import { RouteComponentProps } from "react-router-dom";
 
-const connector = connect(function (state: TokenStoreState) {
-	return { authorized: getToken(state) !== null };
-}, {
-	setToken, setRedirectDocId
-});
-
-type Props = ConnectedProps<typeof connector> & RouteComponentProps<Record<string, string | undefined>> & {
+type Props = RouteComponentProps<Record<string, string | undefined>> & {
 	onClose: () => void;
+	setToken: (token: string | null) => void;
+	setRedirectDocId: (docId: string | null) => void;
 	open: boolean;
+	authorized: boolean;
 }
 
-interface State {
+type State = {
 	loading: boolean;
 	fail: boolean;
 }
 
-export default withRouter(connector(class AuthorizeDialog extends React.Component<Props, State> {
+export default class AuthorizeDialog extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -34,20 +28,20 @@ export default withRouter(connector(class AuthorizeDialog extends React.Componen
 		};
 	}
 
-	reset() {
+	reset(): void {
 		this.setState({
 			loading: false,
 			fail: false,
 		});
 	}
 
-	unauthorize = () => {
+	unauthorize = (): void => {
 		this.props.setToken(null);
 		this.props.setRedirectDocId(null);
 		this.props.onClose();
 	}
 
-	authorize = async () => {
+	authorize = async (): Promise<void> => {
 		this.setState({
 			loading: true,
 			fail: false
@@ -56,7 +50,7 @@ export default withRouter(connector(class AuthorizeDialog extends React.Componen
 		});
 	};
 
-	render() {
+	render(): ReactNode {
 		return (
 			<DialogBase open={this.props.open} onClose={() => this.props.onClose()} onReset={() => this.reset()} title="Authorization">
 				<If condition={this.state.loading}>
@@ -111,5 +105,5 @@ export default withRouter(connector(class AuthorizeDialog extends React.Componen
 			</DialogBase >
 		);
 	}
-}));
+}
 
