@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import HeaderBar from "components/HeaderBar/index";
+import HeaderBar from "components/HeaderBar";
 
 export default class HomePage extends React.Component {
 
