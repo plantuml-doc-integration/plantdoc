@@ -9,6 +9,7 @@ import PrivacyPage from "pages/PrivacyPage";
 import TermsPage from "pages/TermsPage";
 import AuthPage from "pages/AuthPage";
 import Footer from "components/Footer";
+import NotFoundPage from "pages/NotFoundPage";
 import { RouterPropsWithAnyParam } from "types";
 
 
@@ -29,12 +30,8 @@ class App extends React.Component<RouterPropsWithAnyParam> {
 						<ScrollToTop />
 						<TermsPage />
 					</Route>
-					<Route exact path="/" component={HomePage}>
-					</Route>
-					<Route path="*">
-						Not Found page working in progress
-					</Route>
-
+					<Route exact path="/" component={HomePage} />
+					<Route path="*" component={NotFoundPage} />
 				</Switch>
 				<Footer />
 			</div>

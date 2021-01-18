@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router-dom";
-import { CircularProgress, Tooltip, IconButton } from "@material-ui/core";
+import { CircularProgress, Tooltip, IconButton, Typography, Button } from "@material-ui/core";
 import { ErrorOutlineOutlined, RefreshOutlined } from "@material-ui/icons";
 import { If, Then, Else, When } from "react-if";
 import AuthorizeDialog from "components/dialogs/AuthorizeDialog";
@@ -79,6 +79,10 @@ class DocsPage extends React.Component<Props, State> {
 		}
 	};
 
+	returnHome(): void {
+		this.props.history.push("/");
+	}
+
 
 	render(): ReactNode {
 		return (
@@ -93,12 +97,23 @@ class DocsPage extends React.Component<Props, State> {
 				<AuthorizeDialog open={!this.props.authorized} onClose={() => this.props.history.push("/")} />
 				<If condition={this.state.loading}>
 					<Then>
-						<CircularProgress />Loading
+						<LargeIconPageContent icon={<CircularProgress size="20rem" thickness={5} />} title="Loading Your Diagrams" />
+
 					</Then>
 					<Else>
 						<If condition={this.state.error}>
 							<Then>
-								<ErrorOutlineOutlined />Error
+								<LargeIconPageContent icon={<ErrorOutlineOutlined className="huge-icon color-danger" />} title="Error">
+									<Typography>We cannot load your document</Typography>
+									<Typography>Make sure {this.props.match.params.docId} is the correct document id</Typography>
+									<div className="margin-top-small">
+										<Button variant="contained" color="primary" onClick={() => this.updateDocument()}>Retry</Button>
+									</div>
+									<div className="margin-top-small">
+										<Button variant="contained" onClick={() => this.returnHome()}>return to home</Button>
+									</div>
+
+								</LargeIconPageContent>
 							</Then>
 							<Else>
 								<When condition={!!this.state.document}>
@@ -129,6 +144,7 @@ class DocsPage extends React.Component<Props, State> {
 import { State as TokenStoreState, getToken, setToken } from "store/slices/TokenSlice";
 
 import { connect } from "react-redux";
+import LargeIconPageContent from "components/LargeIconPageContent";
 
 type ReduxStoreState = TokenStoreState;
 

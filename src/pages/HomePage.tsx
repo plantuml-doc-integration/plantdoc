@@ -49,7 +49,7 @@ export class HomePage extends React.Component<Props, State> {
 							className="half-width"
 							margin="normal"
 							autoFocus
-							label="Document Link/Id"
+							label="Google Doc Link/Id"
 							value={this.state.docId}
 							onChange={(e) => this.setDocId(e.target.value)}
 							error={this.state.error}
@@ -57,7 +57,9 @@ export class HomePage extends React.Component<Props, State> {
 							helperText={this.state.error ? "Invalid Document Link or Id" : ""}
 						/>
 					</div>
-					<Button variant="contained" color="primary" onClick={() => this.openDocument()}>Open Document</Button>
+					<div className="margin-top-small">
+						<Button variant="contained" color="primary" onClick={() => this.openDocument()}>Open Document</Button>
+					</div>
 				</LargeIconPageContent>
 
 

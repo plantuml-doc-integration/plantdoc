@@ -9,7 +9,7 @@ type Props = {
 const LargeIconPageContent: React.FunctionComponent<Props> = ({ icon, title, children }) => {
 	return (
 		<div className="page">
-			<div className="align-center large-padding-around">
+			<div className="align-center large-icon-page-padding">
 				<span>{icon}</span>
 			</div>
 			<div className="align-center">

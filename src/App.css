@@ -30,6 +30,10 @@ body{
   font-size:5rem !important;
 }
 
+.huge-icon{
+  font-size:20rem !important;
+}
+
 .color-safe{
   color:#299632;
 }
@@ -38,16 +42,24 @@ body{
   color: #962929;
 }
 
+.color-fade{
+  color: #aaaaaa;
+}
+
 .page{
   margin:2rem 10rem
 }
 
-.large-padding-around{
-  padding: 5rem;
+.large-icon-page-padding{
+  padding: 1rem 5rem 2rem;
 }
 
 .margin-top {
   margin-top: 2rem;
+}
+
+.margin-top-small {
+  margin-top: 1rem;
 }
 
 .half-width {

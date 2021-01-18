@@ -8,7 +8,7 @@ const Footer: React.FunctionComponent<EmptyObject> = () => {
 	return (
 		<footer>
 			<Typography variant="caption" className="text-light">
-				&copy; PlantUML Doc Integration 2020 |
+				PlantUML Doc Integration &copy; 2020-2021 |
 				<a href="https://github.com/plantuml-doc-integration/">Source on GitHub</a>
 				| <Link to="/privacy">Privacy Policy</Link> |
 				<Link to="/terms">Terms and Conditions</Link>
